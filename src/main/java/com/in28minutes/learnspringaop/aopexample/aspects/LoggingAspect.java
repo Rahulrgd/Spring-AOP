@@ -14,11 +14,11 @@ public class LoggingAspect {
 
   private Logger logger = LoggerFactory.getLogger(getClass());
 
-//   @Pointcut
+//   Pointcut
   @Before(
     "execution(* com.in28minutes.learnspringaop.aopexample.data.*.*(..))"
   )
   public void logMethodCall(JoinPoint joinPoint) {
-    logger.info("Method is called -{}", joinPoint);
+    logger.info("Before Aspect - {} is called with arguments: {}", joinPoint, joinPoint.getArgs());
   }
 }
