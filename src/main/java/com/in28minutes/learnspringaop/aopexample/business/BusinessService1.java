@@ -14,9 +14,10 @@ public class BusinessService1 {
     this.dataService = dataService;
   }
 
-  public int calculateMax() {
+  public int calculateMax() throws InterruptedException {
     int[] data = dataService.retrieveData();
     // throw new RuntimeException("Something went wrong!");
+    Thread.sleep(30);
     return Arrays.stream(data).max().orElse(0);
   }
 }
