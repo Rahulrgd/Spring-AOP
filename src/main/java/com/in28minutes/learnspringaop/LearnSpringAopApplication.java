@@ -24,7 +24,7 @@ public class LearnSpringAopApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		logger.info("value returned is {}", businessService1.calculateMax());
+		logger.info("Before Aspect - Method is called - {}", businessService1.calculateMax());
 	}
 
 }

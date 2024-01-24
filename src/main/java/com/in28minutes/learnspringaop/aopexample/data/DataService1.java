@@ -1,4 +1,4 @@
-package com.in28minutes.learnspringaop.aopexample.business;
+package com.in28minutes.learnspringaop.aopexample.data;
 
 import org.springframework.stereotype.Repository;
 
