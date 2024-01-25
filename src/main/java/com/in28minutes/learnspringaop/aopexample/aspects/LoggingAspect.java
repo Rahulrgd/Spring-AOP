@@ -18,32 +18,54 @@ public class LoggingAspect {
   private Logger logger = LoggerFactory.getLogger(getClass());
 
   @Before(
-    "execution(* com.in28minutes.learnspringaop.aopexample.data.*.*(..))"
+    "com.in28minutes.learnspringaop.aopexample.aspects.CommonPointcutConfig.allPackageConfigUsingBean()"
   )
   public void logMethodCallBeforeExecution(JoinPoint joinPoint) {
-    logger.info("Before Aspect - {} is called with arguments: {}", joinPoint, joinPoint.getArgs());
+    logger.info(
+      "Before Aspect - {} is called with arguments: {}",
+      joinPoint,
+      joinPoint.getArgs()
+    );
   }
 
   @After(
-    "execution(* com.in28minutes.learnspringaop.aopexample.data.*.*(..))"
+    "com.in28minutes.learnspringaop.aopexample.aspects.CommonPointcutConfig.businessAndDataPackageConfig()"
   )
   public void logMethodCallAfterExecution(JoinPoint joinPoint) {
-    logger.info("After Aspect - {} is called with arguments: {}", joinPoint, joinPoint.getArgs());
+    logger.info(
+      "After Aspect - {} is called with arguments: {}",
+      joinPoint,
+      joinPoint.getArgs()
+    );
   }
 
   @AfterThrowing(
-    pointcut = "execution(* com.in28minutes.learnspringaop.aopexample.data.*.*(..))",
+    pointcut = "com.in28minutes.learnspringaop.aopexample.aspects.CommonPointcutConfig.businessAndDataPackageConfig()",
     throwing = "exception"
   )
-  public void logMethodCallAfterException(JoinPoint joinPoint, Exception exception) {
-    logger.info("AfterThrowing Aspect - {} has thrown exception {}", joinPoint, exception);
+  public void logMethodCallAfterException(
+    JoinPoint joinPoint,
+    Exception exception
+  ) {
+    logger.info(
+      "AfterThrowing Aspect - {} has thrown exception {}",
+      joinPoint,
+      exception
+    );
   }
 
   @AfterReturning(
-    pointcut = "execution(* com.in28minutes.learnspringaop.aopexample.data.*.*(..))",
+    pointcut = "com.in28minutes.learnspringaop.aopexample.aspects.CommonPointcutConfig.businessAndDataPackageConfig()",
     returning = "resultValue"
   )
-  public void logMethodCallAfterSuccessfulExecution(JoinPoint joinPoint, Object resultValue) {
-    logger.info("AfterReturning Aspect - {} has returned {}", joinPoint, resultValue);
+  public void logMethodCallAfterSuccessfulExecution(
+    JoinPoint joinPoint,
+    Object resultValue
+  ) {
+    logger.info(
+      "AfterReturning Aspect - {} has returned {}",
+      joinPoint,
+      resultValue
+    );
   }
 }
