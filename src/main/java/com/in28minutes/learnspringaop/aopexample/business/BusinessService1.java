@@ -3,6 +3,7 @@ package com.in28minutes.learnspringaop.aopexample.business;
 import java.util.Arrays;
 import org.springframework.stereotype.Service;
 
+import com.in28minutes.learnspringaop.aopexample.annotation.TrackTime;
 import com.in28minutes.learnspringaop.aopexample.data.DataService1;
 
 @Service
@@ -14,6 +15,7 @@ public class BusinessService1 {
     this.dataService = dataService;
   }
 
+  @TrackTime
   public int calculateMax() throws InterruptedException {
     int[] data = dataService.retrieveData();
     // throw new RuntimeException("Something went wrong!");

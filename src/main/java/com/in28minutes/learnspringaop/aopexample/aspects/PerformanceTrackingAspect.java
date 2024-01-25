@@ -11,10 +11,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PerformanceTrackingAspect {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+  private Logger logger = LoggerFactory.getLogger(getClass());
 
-  @Around("com.in28minutes.learnspringaop.aopexample.aspects.CommonPointcutConfig.businessAndDataPackageConfig()")
-  public Object findExecutionTime(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+  // @Around("com.in28minutes.learnspringaop.aopexample.aspects.CommonPointcutConfig.businessAndDataPackageConfig()")
+  @Around(
+    "com.in28minutes.learnspringaop.aopexample.aspects.CommonPointcutConfig.trackTimeAnnotation()"
+  )
+  public Object findExecutionTime(ProceedingJoinPoint proceedingJoinPoint)
+    throws Throwable {
     // Start a timer
     long startTimeMillis = System.currentTimeMillis();
     // Execute the method
@@ -22,7 +26,11 @@ public class PerformanceTrackingAspect {
     // Stop the timer
     long stopTimeMillis = System.currentTimeMillis();
     long executionDuration = stopTimeMillis - startTimeMillis;
-    logger.info("Around Aspect - {} Method executed in {} ms", proceedingJoinPoint, executionDuration);
+    logger.info(
+      "Around Aspect - {} Method executed in {} ms",
+      proceedingJoinPoint,
+      executionDuration
+    );
     return returnValue;
   }
 }
